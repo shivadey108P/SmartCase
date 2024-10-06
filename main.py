@@ -72,23 +72,23 @@ def home():
     return render_template('homepage.html', year = current_year)
 
 
-@app.route('/login', methods = ['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    login_user = LoginUser()
-    if login_user.validate_on_submit():
-        exiting_user = db.session.execute(db.select(User).where(User.email == login_user.email.data)).scalar()
+    login_form = LoginUser()  # Renamed to avoid conflict
+    if login_form.validate_on_submit():
+        exiting_user = db.session.execute(db.select(User).where(User.email == login_form.email.data)).scalar()
         if exiting_user:
-            if check_password_hash(password=login_user.password.data,pwhash=exiting_user.password): 
-                login_user(exiting_user)
-                # flash("User logged in successfully!", 'success')
+            # Correct the check_password_hash function call
+            if check_password_hash(exiting_user.password, login_form.password.data): 
+                login_user(exiting_user)  # Call the Flask-Login function
                 return redirect(url_for('test_bot'))
             else:
-                # flash("You've entered wrong password, please try again!", 'error')
+                # flash("You've entered the wrong password, please try again!", 'error')
                 return redirect(url_for('login'))
         else:
             # flash("That email doesn't exist, please try again or try registering!", 'info')
             return redirect(url_for('login'))
-    return render_template('login.html', logged_in= True, year = current_year, form = login_user)
+    return render_template('login.html', logged_in=True, year=current_year, form=login_form)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
