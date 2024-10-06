@@ -1,3 +1,103 @@
 .home-page-img{
     border-radius: 25%;
 }
+body {
+    background-color: #121212; /* Darker background */
+    color: #e0e0e0; /* Light text color */
+  }
+
+
+  
+  .navbar, .footer{
+    background-color: #181818; /* Darker navbar and footer */
+    border-color: #333; /* Border color for separation */
+  }
+  
+  a {
+    color: #1a73e8; /* Custom link color */
+  }
+  
+  a:hover {
+    color: #ffa726; /* Hover color */
+  }
+  
+  .btn-primary {
+    background-color: #1e88e5; /* Darker primary button */
+    border-color: #1e88e5;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1565c0;
+    border-color: #1565c0;
+  }
+
+  .icon-square {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+}
+
+.carousel {
+    position: relative; /* Make sure carousel is positioned relatively */
+}
+
+a {
+    text-decoration: none;
+    color: #2DBAD6;
+}
+
+.divider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px 0;
+    width: 100%; /* Match the width of the parent container */
+}
+
+.divider {
+    padding: 0 10px;
+    color: #2DBAD6; /* Custom color for the 'OR' text */
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: #2DBAD6; /* Line color */
+}
+
+.chat-area {
+    border: 1px solid #151515;
+    border-radius: 10px;
+    padding: 10px;
+    height: 400px;
+    overflow-y: scroll; /* Enable scrolling for messages */
+    background-color: #0000; /* White background for chat messages */
+}
+
+/* Style for chat messages */
+.message {
+    padding: 8px;
+    border-radius: 25%;
+    margin-bottom: 10px;
+}
+
+.bot-message {
+    background-color: #0000; /* Light gray for bot messages */
+}
+
+.user-message {
+    background-color: #0000; /* Light blue for user messages */
+}
+
+/* Input group styling */
+.input-group {
+    margin-top: 15px;
+    border-radius: 25%;
+}
+
+.profile_spacing{
+    margin-top: 140%;
+}

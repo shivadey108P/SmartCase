@@ -1,0 +1,166 @@
+{%extends 'base.html'%} {%block title%}SmartCase{%endblock%} {%block content%}
+<div class="container py-3">
+  <header>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal text-body-emphasis">SmartCase Pricing</h1>
+      <p class="fs-5 text-body-secondary">
+        Choose the right plan for your team and get access to AI-driven test
+        case generation, cloud resource management, and more. SmartCase offers
+        flexible plans for teams of all sizes, with varying levels of AI model
+        support and storage.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <!-- Free Plan -->
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              ₹0<small class="text-body-secondary fw-light">/mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>5 users included</li>
+              <li>1 GB of storage</li>
+              <li>Email support</li>
+              <li>Textual AI responses (200-500 chats)</li>
+              <li>Limited AI features (based on token usage)</li>
+              <li>Limited Cloud resource management</li>
+            </ul>
+            <a href="{{url_for('register')}}" type="button" class="w-100 btn btn-lg btn-outline-info">
+              Sign up for free
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Pro</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              ₹1,499<small class="text-body-secondary fw-light">/mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>15 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Access to higher AI models (GPT-4 and beyond)</li>
+              <li>Unlimited AI chats</li>
+              <li>Cloud resource management</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-info">
+              Get started
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-info">
+          <div class="card-header py-3 text-bg-info border-info">
+            <h4 class="my-0 fw-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">
+              ₹4,999<small class="text-body-secondary fw-light">/mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Unlimited users</li>
+              <li>50 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Advanced AI model support (GPT-4, GPT-4 Turbo)</li>
+              <li>Custom AI integrations</li>
+              <li>Cloud resource management and API access</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-info">
+              Contact us
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="display-6 text-center mb-4">Compare plans</h2>
+
+    <div class="table-responsive">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 34%"></th>
+            <th style="width: 22%">Free</th>
+            <th style="width: 22%">Pro</th>
+            <th style="width: 22%">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="text-start">
+              AI-Driven Test Case Generation
+            </th>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Cloud Resource Management</th>
+            <td></td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">AI Model Access (GPT-4)</th>
+            <td></td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">Unlimited AI Chats</th>
+            <td></td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-start">
+              Custom Workflows & Integrations
+            </th>
+            <td></td>
+            <td></td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+{%endblock%}
