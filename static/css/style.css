@@ -89,15 +89,44 @@ a {
 }
 
 .user-message {
-    background-color: #0000; /* Light blue for user messages */
+    background-color: #fcf9f900; /* Light blue for user messages */
+    border:1px solid #ed151500;
+    border-radius: 20px;
 }
 
 /* Input group styling */
-.input-group {
-    margin-top: 15px;
-    border-radius: 25%;
-}
 
 .profile_spacing{
-    margin-top: 140%;
+    margin-top: 135%;
+}
+
+.form-control, .send-btn, .form-select, .share-btn{
+    border-radius: 25px;
+    height: 48px;
+}
+.send-btn, .share-btn{
+    width: 100px;
+}
+
+.mode-select{
+    width: 150px;
+}
+
+.div-mode-select{
+    padding-left: 0%;
+}
+
+.chat-area{
+    border: 0;
+    background-color: #0000;
+    overflow-y: scroll;
+    height: 80%;
+    padding: 10px;
+}
+.chat-bot-icon{
+    border:1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
 }
