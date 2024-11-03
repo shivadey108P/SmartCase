@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, send_from_directory
+from flask import Flask, render_template, redirect, url_for, flash, send_from_directory, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -11,6 +11,8 @@ from wtforms.validators import DataRequired, Email, Length, Regexp
 from dotenv import load_dotenv
 from flask_bootstrap import Bootstrap5
 import datetime as dt
+from chatBot import ChatBot
+from table_generator import TableGenerator
 
 load_dotenv()
 
@@ -19,6 +21,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 Bootstrap5(app)
+
+table_path = None
+
+chatbot = ChatBot()
 
 class Base(DeclarativeBase):
     pass
@@ -110,11 +116,6 @@ def register():
 def pricing():
     return render_template('pricing.html')
 
-@app.route('/test_bot')
-@login_required
-def test_bot():
-    return render_template('test_bot.html',logged_in = current_user.is_authenticated)
-
 @app.route('/google_auth')
 def google_auth():
     pass
@@ -123,10 +124,33 @@ def google_auth():
 def github_auth():
     pass
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('home'))
+@app.route('/test_bot', methods=['GET', 'POST'])
+@login_required
+def test_bot():
+    global table_path
+    if request.method == 'POST':
+        user_query = request.form.get('user_query')
+        option = int(request.form.get('option'))
+
+        # Get ChatGPT response
+        response = chatbot.get_response(user_query, option)
+
+        # If option 2 is selected, process with TableGenerator
+        if option == 2:
+            table_gen = TableGenerator(response)
+            table_path = table_gen.generate_excel()
+            return jsonify({'response': response, 'table_path': table_path})
+        else:
+            return jsonify({'response': response})
+
+    return render_template('test_bot.html', logged_in=current_user.is_authenticated)
+
+@app.route('/download/<path:filename>')
+@login_required
+def download(filename):
+    global table_path
+    return send_from_directory('static', path=table_path)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

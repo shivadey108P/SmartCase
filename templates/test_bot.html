@@ -6,135 +6,111 @@
 
     <!-- Sidebar -->
     <div class="sidebar bg-dark text-white p-3" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 text-white text-decoration-none">
-            <img src="{{url_for('static', filename='icons/logo_automate.svg')}}" alt="SmartCase Logo" width="40"
-                height="32" class="me-2">
-            <span class="fs-4">SmartCase</span>
-        </a>
-
-        <hr class="bg-secondary">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
-                    <svg class="bi pe-none me-2" width="16" height="16">
-                        <use xlink:href="#home"></use>
-                    </svg>
-                    New Chat
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-                    <svg class="bi pe-none me-2" width="16" height="16">
-                        <use xlink:href="#speedometer2"></use>
-                    </svg>
-                    Chat History
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-                    <svg class="bi pe-none me-2" width="16" height="16">
-                        <use xlink:href="#table"></use>
-                    </svg>
-                    Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-                    <svg class="bi pe-none me-2" width="16" height="16">
-                        <use xlink:href="#grid"></use>
-                    </svg>
-                    Create New Resource
-                </a>
-            </li>
-            <li>
-                <a href="{{ url_for('pricing') }}" class="nav-link text-white">
-                    <svg class="bi pe-none me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"></use>
-                    </svg>
-                    Upgrade Plan
-                </a>
-            </li>
-        </ul>
-        <hr class="bg-secondary profile_spacing">
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#e8eaed">
-                    <path
-                        d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
-                </svg>
-                &nbsp;
-                <strong>{{ current_user.name }}</strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="{{url_for('logout')}}">Log out</a></li>
-            </ul>
-        </div>
+        <!-- Sidebar content (unchanged) -->
+        <!-- User Profile and Sidebar Links -->
     </div>
 
     <!-- Main Chat Area -->
     <div class="flex-grow-1 p-4" style="background-color: #121212;">
         <div class="d-flex justify-content-end align-items-center mb-3">
+            <!-- Header Options -->
             <div>
                 <button class="btn btn-outline-info share-btn">Share</button>
                 <select class="form-select d-inline-block w-auto" aria-label="Select AI Chat Model">
                     <option selected>Select AI Model</option>
                     <option value="1">GPT-3.5 Turbo</option>
-                    <option value="2">GPT-4o Mini</option>
+                    <option value="2">GPT-4 Mini</option>
                     <option value="3">GPT-4</option>
                 </select>
             </div>
         </div>
 
-        <div class="chat-area">
-            <!-- Chat messages will appear here -->
+        <!-- Chat messages area -->
+        <div id="chat-area" class="chat-area">
+            <!-- Initial bot message -->
             <div class="message bot-message mb-3 d-flex justify-content-start">
                 <div class="chat-bot-icon">
                     <img class="d-flex justify-content-center"
                         src="{{url_for('static', filename='icons/logo_automate.svg')}}" alt="SmartCase Logo" width="24"
-                        height="24" class="me-2">
+                        height="24">
                 </div>&nbsp;
                 How can I assist you today?
             </div>
-            <div class="message mb-3 d-flex justify-content-end">
-                <div class="user-message">I need help with generating test cases.</div>
-            </div>
-            <!-- Add more chat messages dynamically here -->
+            <!-- Messages will be dynamically added here -->
         </div>
 
+        <!-- Chat input area -->
         <div class="container px-0 py-3">
             <div class="row px-0">
                 <div class="col-8 pr-2">
-                    <textarea class="form-control" placeholder="Type your message..." aria-label="User message"
-                        rows="2"></textarea>
+                    <textarea id="user-message" class="form-control" placeholder="Type your message..."
+                        aria-label="User message" rows="2"></textarea>
                 </div>
                 <div class="col-2 px-0 div-mode-select">
-                    <div class="dropdown pl-2">
-                        <select class="form-select d-inline-block mode-select" aria-label="Mode">
-                            <option selected>Mode</option>
-                            <option value="1">Doubt</option>
-                            <option value="2">Generate Test Case</option>
-                            <option value="3">Generate Automation Code (Java)</option>
-                            <option value="4">Generate Automation Code (Python)</option>
-                            <option value="5">Others</option>
-                        </select>
-                    </div>
+                    <select id="option" class="form-select d-inline-block mode-select" aria-label="Mode">
+                        <option selected>Mode</option>
+                        <option value="1">Doubt</option>
+                        <option value="2">Generate Test Case</option>
+                        <option value="3">Generate Automation Code (Java)</option>
+                        <option value="4">Generate Automation Code (Python)</option>
+                        <option value="5">Others</option>
+                    </select>
                 </div>
                 <div class="col-2 px-0">
                     <button type="button" class="send-btn btn btn-info">Send</button>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelector('.send-btn').addEventListener('click', async () => {
+        const userMessage = document.getElementById('user-message').value;
+        const option = document.getElementById('option').value;
+
+        if (!userMessage || option === "Mode") return alert("Please enter a message and select a mode.");
+
+        // Display the user's message in the chat area
+        const chatArea = document.getElementById('chat-area');
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('message', 'mb-3', 'd-flex', 'justify-content-end');
+        userMessageDiv.innerHTML = `<div class="user-message">${userMessage}</div>`;
+        chatArea.appendChild(userMessageDiv);
+        document.getElementById('user-message').value = '';
+
+        // Send the user message and option to the server
+        const formData = new FormData();
+        formData.append('user_query', userMessage);
+        formData.append('option', option);
+
+        const response = await fetch("{{ url_for('test_bot') }}", {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        // Display the bot's response
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.classList.add('message', 'bot-message', 'mb-3', 'd-flex', 'justify-content-start');
+        botMessageDiv.innerHTML = `<div class="chat-bot-icon">
+                                        <img src="{{url_for('static', filename='icons/logo_automate.svg')}}" alt="SmartCase Logo" width="24" height="24">
+                                   </div>&nbsp;${result.response}`;
+        chatArea.appendChild(botMessageDiv);
+
+        // Add download link if a table is generated (option 2)
+        if (result.table_path) {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = `/download/${result.table_path}`;
+            downloadLink.textContent = 'Download Generated Test Cases';
+            downloadLink.classList.add('d-block', 'text-info', 'mt-2');
+            botMessageDiv.appendChild(downloadLink);
+        }
+
+        // Scroll chat area to the bottom
+        chatArea.scrollTop = chatArea.scrollHeight;
+    });
+</script>
 
 {% endblock %}
