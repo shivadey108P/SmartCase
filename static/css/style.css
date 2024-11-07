@@ -85,7 +85,9 @@ a {
 }
 
 .bot-message {
-    background-color: #0000; /* Light gray for bot messages */
+    display: flex;
+    align-items: flex-start; /* Align the message to the start */
+    max-width: 80%; /* Limit the width of the message */
 }
 
 .user-message {
@@ -123,10 +125,10 @@ a {
     height: 80%;
     padding: 10px;
 }
-.chat-bot-icon{
-    border:1px solid white;
+.chat-bot-icon {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
+    align-items: center; /* Center the icon vertically */
+    width: 24px; /* Set fixed width */
+    height: 24px; /* Set fixed height */
 }
+
