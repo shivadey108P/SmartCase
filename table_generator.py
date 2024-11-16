@@ -77,20 +77,23 @@ class TableGenerator:
             "Step Number", "Steps Description", "Expected Result",
             "Actual Result", "Validations", "Status", "Comments"
         ]
-        df = pd.DataFrame(self.test_cases, columns=columns)
+        self.df = pd.DataFrame(self.test_cases, columns=columns)
 
         # Debugging output
-        print(df)
+        # print(df)
 
         now = datetime.now()
         timestamp = now.strftime("%m_%d_%Y_%H%M")
         self.filename = f"test_cases_{timestamp}.xlsx"
         this_dir = os.path.dirname(__file__)
-        self.directory = os.path.join(this_dir,'testcases')
+        self.directory = os.path.join(this_dir,'static','testcases')
         self.filepath = os.path.join(self.directory, self.filename)
         
-        df.to_excel(self.filepath, index=False)
-        return self.filepath
+        self.df.to_excel(self.filepath, index=False)
+        return self.filename
+    
+    def send_table(self):
+        return self.df
 
 # # Example usage:
 # data = """

@@ -1,111 +1,86 @@
-  <!DOCTYPE html>
-  <html lang="en" data-bs-theme="dark">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 
-      {% block styles %}
-      <!-- Load Bootstrap-Flask CSS here -->
-      {{bootstrap.load_css()}} {% endblock %}
-      <title>{%block title%}{%endblock%}</title>
-      <link
-        rel="stylesheet"
-        href="{{url_for('static', filename='css/style.css')}}"
-      />
-      <link
-        rel="icon"
-        href="{{url_for('static', filename='icons/favicon.ico')}}"
-      />
-    </head>
-    <body>
-      {% if not logged_in %}
-      <div class="container">
-        <header
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 "
-        >
-          <div class="col-md-3 mb-2 mb-md-0">
-            <a
-              href="/"
-              class="d-inline-flex link-body-emphasis text-decoration-none"
-            >
-              <img
-                src="{{url_for('static', filename='icons/logo_automate.svg')}}"
-                alt="SmartCase Logo"
-              />&nbsp;SmartCase
-            </a>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="{{url_for('home')}}" class="nav-link-info px-2 link-secondary">Home</a></li>
-            <li><a href="#features" class="nav-link-info px-2">Features</a></li>
-            <li><a href="{{url_for('pricing')}}" class="nav-link-info px-2">Pricing</a></li>
-            <li><a href="#" class="nav-link-info px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link-info px-2">About</a></li>
-          </ul>
+  {% block styles %}
+  <!-- Load Bootstrap-Flask CSS here -->
+  {{bootstrap.load_css()}} {% endblock %}
+  <title>{%block title%}{%endblock%}</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+  <link rel="icon" href="{{url_for('static', filename='icons/favicon.ico')}}" />
+</head>
 
-          
-          <div class="col-md-3 text-end">
-            <a
-              href="{{url_for('login')}}"
-              type="button"
-              class="btn btn-outline-info me-2"
-              >Login</a
-            >
-            <a
-              href="{{url_for('register')}}"
-              type="button"
-              class="btn btn-info"
-              >Register</a
-            >
-          </div>
-        </header>
+<body>
+  {% if not logged_in %}
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 ">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="{{url_for('static', filename='icons/logo_automate.svg')}}" alt="SmartCase Logo" />&nbsp;SmartCase
+        </a>
       </div>
-      {% endif %}
-      {%block content%} {%endblock%}
 
-      
-      <!--Footer-->
-      {% if not logged_in %}
-      <div class="container">
-        <footer
-          class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-        >
-          <p class="col-md-4 mb-0 text-body-secondary">
-            © {{year}} SmartCase, Inc
-          </p>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{{url_for('home')}}" class="nav-link-info px-2 link-secondary">Home</a></li>
+        <li><a href="#features" class="nav-link-info px-2">Features</a></li>
+        <li><a href="{{url_for('pricing')}}" class="nav-link-info px-2">Pricing</a></li>
+        <li><a href="#" class="nav-link-info px-2">FAQs</a></li>
+        <li><a href="#" class="nav-link-info px-2">About</a></li>
+      </ul>
 
-          <a
-            href="/"
-            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-          >
-            <img
-              src="{{url_for('static', filename='icons/logo_automate.svg')}}"
-              alt="SmartCase Logo"
-            />
-          </a>
 
-          <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item">
-              <a href="{{url_for('home')}}" class="nav-link px-2 text-body-secondary">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="#features" class="nav-link px-2 text-body-secondary">Features</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url_for('pricing')}}" class="nav-link px-2 text-body-secondary">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-body-secondary">About</a>
-            </li>
-          </ul>
-        </footer>
+      <div class="col-md-3 text-end">
+        <a href="{{url_for('login')}}" type="button" class="btn btn-outline-info me-2">Login</a>
+        <a href="{{url_for('register')}}" type="button" class="btn btn-info">Register</a>
       </div>
-      {% endif %}
-      {%block scripts%}
-        {{bootstrap.load_js()}}
-      {%endblock%}
-    </body>
-  </html>
+    </header>
+  </div>
+  {% endif %}
+  {%block content%} {%endblock%}
+
+
+  <!--Footer-->
+  {% if not logged_in %}
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">
+        © {{year}} SmartCase, Inc
+      </p>
+
+      <a href="/"
+        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img src="{{url_for('static', filename='icons/logo_automate.svg')}}" alt="SmartCase Logo" />
+      </a>
+
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item">
+          <a href="{{url_for('home')}}" class="nav-link px-2 text-body-secondary">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#features" class="nav-link px-2 text-body-secondary">Features</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{url_for('pricing')}}" class="nav-link px-2 text-body-secondary">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+  {% endif %}
+  {%block scripts%}
+  {{bootstrap.load_js()}}
+  {%endblock%}
+  {%block js_script%}
+  <script src="{{url_for('static', filename='js/index.js')}}"></script>
+  {%endblock%}
+</body>
+
+</html>

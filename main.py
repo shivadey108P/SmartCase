@@ -134,12 +134,14 @@ def test_bot():
 
         # Get ChatGPT response
         response = chatbot.get_response(user_query, option)
-
+        
         # If option 2 is selected, process with TableGenerator
         if option == 2:
             table_gen = TableGenerator(response)
             table_path = table_gen.generate_excel()
-            return jsonify({'response': response, 'table_path': table_path})
+            table_df = table_gen.send_table()
+            table_html = table_df.to_html(classes='table table-striped')
+            return jsonify({'response': '', 'table_path': table_path, 'table_html': table_html})
         else:
             return jsonify({'response': response})
 
@@ -148,9 +150,12 @@ def test_bot():
 @app.route('/download/<path:filename>')
 @login_required
 def download(filename):
-    global table_path
-    return send_from_directory('static', path=table_path)
+    return send_from_directory(os.path.join('static', 'testcases'), filename, as_attachment = True)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(debug=True)

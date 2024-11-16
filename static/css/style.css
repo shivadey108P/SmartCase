@@ -90,12 +90,6 @@ a {
     max-width: 80%; /* Limit the width of the message */
 }
 
-.user-message {
-    background-color: #fcf9f900; /* Light blue for user messages */
-    border:1px solid #ed151500;
-    border-radius: 20px;
-}
-
 /* Input group styling */
 
 .profile_spacing{
@@ -130,5 +124,16 @@ a {
     align-items: center; /* Center the icon vertically */
     width: 24px; /* Set fixed width */
     height: 24px; /* Set fixed height */
+}
+
+.user-message {
+    background-color: #303030; /* Light blue for user messages */
+    border:1px solid #303030;
+    border-radius: 20px;
+    max-width: 70%;
+}
+
+.bot-response-div{
+    border-radius: 20px;
 }
 
