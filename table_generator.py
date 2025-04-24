@@ -3,15 +3,18 @@ import re
 from datetime import datetime
 import os
 
+
 class TableGenerator:
     def __init__(self, data):
         self.data = data.lower()
         self.test_cases = []
 
     def parse_data(self):
-        test_cases = re.split(r'\n(?=\d+\.\s*test case description:)', self.data.strip())
+        test_cases = re.split(
+            r"\n(?=\d+\.\s*test case description:)", self.data.strip()
+        )
         for i, case in enumerate(test_cases, start=1):
-            lines = case.strip().split('\n')
+            lines = case.strip().split("\n")
             description = ""
             pre_conditions = []
             steps = []
@@ -23,31 +26,37 @@ class TableGenerator:
 
             for line in lines:
                 line = line.strip()
-                if re.match(r'^\d+\.\s*test case description:', line):
-                    description = re.sub(r'^\d+\.\s*test case description:', '', line).strip()
-                    current_section = 'description'
+                if re.match(r"^\d+\.\s*test case description:", line):
+                    description = re.sub(
+                        r"^\d+\.\s*test case description:", "", line
+                    ).strip()
+                    current_section = "description"
                 elif line.startswith("prerequisites:"):
                     pre_conditions.append(line.replace("prerequisites:", "").strip())
-                    current_section = 'prerequisites'
-                elif line.startswith("steps:") or re.match(r'^[a-z]\.', line):
-                    current_section = 'steps'
-                    if re.match(r'^[a-z]\.', line):
+                    current_section = "prerequisites"
+                elif line.startswith("steps:") or re.match(r"^[a-z]\.", line):
+                    current_section = "steps"
+                    if re.match(r"^[a-z]\.", line):
                         step_number += 1
-                        steps.append((step_number, re.sub(r'^[a-z]\.', "", line).strip()))
+                        steps.append(
+                            (step_number, re.sub(r"^[a-z]\.", "", line).strip())
+                        )
                 elif line.startswith("expected results:"):
-                    expected_results.append(line.replace("expected results:", "").strip())
-                    current_section = 'expected_results'
+                    expected_results.append(
+                        line.replace("expected results:", "").strip()
+                    )
+                    current_section = "expected_results"
                 elif line.startswith("validations:"):
                     validations.append(line.replace("validations:", "").strip())
-                    current_section = 'validations'
-                elif current_section == 'prerequisites':
+                    current_section = "validations"
+                elif current_section == "prerequisites":
                     pre_conditions.append(line)
-                elif current_section == 'steps' and re.match(r'^[a-z]\.', line):
+                elif current_section == "steps" and re.match(r"^[a-z]\.", line):
                     step_number += 1
-                    steps.append((step_number, re.sub(r'^[a-z]\.', "", line).strip()))
-                elif current_section == 'expected_results':
+                    steps.append((step_number, re.sub(r"^[a-z]\.", "", line).strip()))
+                elif current_section == "expected_results":
                     expected_results.append(line)
-                elif current_section == 'validations':
+                elif current_section == "validations":
                     validations.append(line)
 
             # Join multiline sections into a single string
@@ -57,25 +66,34 @@ class TableGenerator:
 
             # Add test case details to the list
             for step_number, step in steps:
-                self.test_cases.append([
-                    f"TC{str(i).zfill(2)}",  # Ensure TC format with leading zeros
-                    description if step_number == 1 else "",
-                    pre_conditions if step_number == 1 else "",
-                    step_number,
-                    step,
-                    expected_results if step_number == 1 else "",
-                    "",  # Actual Result
-                    validations if step_number == 1 else "",
-                    "",  # Status
-                    ""   # Comments
-                ])
+                self.test_cases.append(
+                    [
+                        f"TC{str(i).zfill(2)}",  # Ensure TC format with leading zeros
+                        description if step_number == 1 else "",
+                        pre_conditions if step_number == 1 else "",
+                        step_number,
+                        step,
+                        expected_results if step_number == 1 else "",
+                        "",  # Actual Result
+                        validations if step_number == 1 else "",
+                        "",  # Status
+                        "",  # Comments
+                    ]
+                )
 
     def generate_excel(self):
         self.parse_data()
         columns = [
-            "Test Case ID", "Test Case description", "Pre-requisite Condition",
-            "Step Number", "Steps Description", "Expected Result",
-            "Actual Result", "Validations", "Status", "Comments"
+            "Test Case ID",
+            "Test Case description",
+            "Pre-requisite Condition",
+            "Step Number",
+            "Steps Description",
+            "Expected Result",
+            "Actual Result",
+            "Validations",
+            "Status",
+            "Comments",
         ]
         self.df = pd.DataFrame(self.test_cases, columns=columns)
 
@@ -86,14 +104,15 @@ class TableGenerator:
         timestamp = now.strftime("%m_%d_%Y_%H%M")
         self.filename = f"test_cases_{timestamp}.xlsx"
         this_dir = os.path.dirname(__file__)
-        self.directory = os.path.join(this_dir,'static','testcases')
+        self.directory = os.path.join(this_dir, "testcases")
         self.filepath = os.path.join(self.directory, self.filename)
-        
+
         self.df.to_excel(self.filepath, index=False)
         return self.filename
-    
+
     def send_table(self):
         return self.df
+
 
 # # Example usage:
 # data = """

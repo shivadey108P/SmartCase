@@ -1,44 +1,54 @@
-.home-page-img{
+.home-page-img {
     border-radius: 25%;
 }
+
 body {
-    background-color: #121212; /* Darker background */
-    color: #e0e0e0; /* Light text color */
-  }
+    background-color: #121212;
+    /* Darker background */
+    color: #e0e0e0;
+    /* Light text color */
+}
 
 
-  
-  .navbar, .footer{
-    background-color: #181818; /* Darker navbar and footer */
-    border-color: #333; /* Border color for separation */
-  }
-  
-  a {
-    color: #1a73e8; /* Custom link color */
-  }
-  
-  a:hover {
-    color: #ffa726; /* Hover color */
-  }
-  
-  .btn-primary {
-    background-color: #1e88e5; /* Darker primary button */
+
+.navbar,
+.footer {
+    background-color: #181818;
+    /* Darker navbar and footer */
+    border-color: #333;
+    /* Border color for separation */
+}
+
+a {
+    color: #1a73e8;
+    /* Custom link color */
+}
+
+a:hover {
+    color: #ffa726;
+    /* Hover color */
+}
+
+.btn-primary {
+    background-color: #1e88e5;
+    /* Darker primary button */
     border-color: #1e88e5;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #1565c0;
     border-color: #1565c0;
-  }
+}
 
-  .icon-square {
+.icon-square {
     width: 3rem;
     height: 3rem;
     border-radius: .75rem;
 }
 
 .carousel {
-    position: relative; /* Make sure carousel is positioned relatively */
+    position: relative;
+    /* Make sure carousel is positioned relatively */
 }
 
 a {
@@ -51,12 +61,14 @@ a {
     align-items: center;
     justify-content: center;
     margin: 24px 0;
-    width: 100%; /* Match the width of the parent container */
+    width: 100%;
+    /* Match the width of the parent container */
 }
 
 .divider {
     padding: 0 10px;
-    color: #2DBAD6; /* Custom color for the 'OR' text */
+    color: #2DBAD6;
+    /* Custom color for the 'OR' text */
     font-size: 12px;
     font-weight: 400;
     text-transform: uppercase;
@@ -65,7 +77,8 @@ a {
 .divider-line {
     flex: 1;
     height: 1px;
-    background-color: #2DBAD6; /* Line color */
+    background-color: #2DBAD6;
+    /* Line color */
 }
 
 .chat-area {
@@ -73,8 +86,30 @@ a {
     border-radius: 10px;
     padding: 10px;
     height: 400px;
-    overflow-y: scroll; /* Enable scrolling for messages */
-    background-color: #0000; /* White background for chat messages */
+    overflow-y: scroll;
+    /* Enable scrolling for messages */
+    background-color: #0000;
+    /* White background for chat messages */
+}
+
+.chat-area::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    background: #424242;
+    /* Track background */
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Thumb (the draggable part) */
+    border-radius: 4px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Thumb on hover */
 }
 
 /* Style for chat messages */
@@ -86,54 +121,65 @@ a {
 
 .bot-message {
     display: flex;
-    align-items: flex-start; /* Align the message to the start */
-    max-width: 80%; /* Limit the width of the message */
+    align-items: flex-start;
+    /* Align the message to the start */
+    max-width: 80%;
+    /* Limit the width of the message */
 }
 
 /* Input group styling */
 
-.profile_spacing{
+.profile_spacing {
     margin-top: 135%;
 }
 
-.form-control, .send-btn, .form-select, .share-btn{
+.form-control,
+.send-btn,
+.form-select,
+.share-btn {
     border-radius: 25px;
-    height: 48px;
+    height: 40px;
 }
-.send-btn, .share-btn{
+
+.send-btn,
+.share-btn {
     width: 100px;
 }
 
-.mode-select{
+.mode-select {
     width: 150px;
 }
 
-.div-mode-select{
+.div-mode-select {
     padding-left: 0%;
 }
 
-.chat-area{
+.chat-area {
     border: 0;
     background-color: #0000;
     overflow-y: scroll;
     height: 80%;
     padding: 10px;
 }
+
 .chat-bot-icon {
     display: flex;
-    align-items: center; /* Center the icon vertically */
-    width: 24px; /* Set fixed width */
-    height: 24px; /* Set fixed height */
+    align-items: center;
+    /* Center the icon vertically */
+    width: 24px;
+    /* Set fixed width */
+    height: 24px;
+    /* Set fixed height */
 }
 
 .user-message {
-    background-color: #303030; /* Light blue for user messages */
-    border:1px solid #303030;
+    background-color: #303030;
+    /* Light blue for user messages */
+    border: 1px solid #303030;
     border-radius: 20px;
     max-width: 70%;
 }
 
-.bot-response-div{
+.bot-response-div {
     border-radius: 20px;
 }
-
