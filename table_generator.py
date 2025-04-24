@@ -97,14 +97,15 @@ class TableGenerator:
         ]
         self.df = pd.DataFrame(self.test_cases, columns=columns)
 
-        # Debugging output
-        # print(df)
-
         now = datetime.now()
         timestamp = now.strftime("%m_%d_%Y_%H%M")
         self.filename = f"test_cases_{timestamp}.xlsx"
         this_dir = os.path.dirname(__file__)
         self.directory = os.path.join(this_dir, "testcases")
+
+        # Create the directory if it doesn't exist
+        os.makedirs(self.directory, exist_ok=True)
+
         self.filepath = os.path.join(self.directory, self.filename)
 
         self.df.to_excel(self.filepath, index=False)
