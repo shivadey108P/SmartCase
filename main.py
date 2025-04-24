@@ -48,6 +48,8 @@ class Base(DeclarativeBase):
     pass
 
 
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///authenticate.db"
+
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
     "DB_URI", "sqlite:///authenticate.db"
 )
@@ -73,6 +75,7 @@ class User(UserMixin, db.Model):
 
 
 with app.app_context():
+    # db.drop_all()
     db.create_all()
 
 
