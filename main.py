@@ -47,6 +47,7 @@ chatbot = ChatBot()
 class Base(DeclarativeBase):
     pass
 
+
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
     "DB_URI", "sqlite:///authenticate.db"
 )
@@ -68,7 +69,7 @@ class User(UserMixin, db.Model):
     email: Mapped[str] = mapped_column(String(100), unique=True)
     password: Mapped[str] = mapped_column(String(100), nullable=False)
     name: Mapped[str] = mapped_column(String(1000), nullable=False)
-    contact_number: Mapped[int] = mapped_column(Integer, unique=True)
+    contact_number: Mapped[str] = mapped_column(String(15), unique=True)
 
 
 with app.app_context():
@@ -105,8 +106,8 @@ class FormUser(FlaskForm):
         validators=[
             DataRequired(message="You can't leave this field empty"),
             Regexp(
-                r"^\d{10}$",
-                message="Invalid phone number format. Please enter 10 digits.",
+                r"^\+?\d{10,15}$",
+                message="Invalid phone number format. Include country code if needed.",
             ),
         ],
     )
